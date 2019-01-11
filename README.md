@@ -17,8 +17,12 @@ Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-wit
 ## Process
 - ### Dataset 
     The dataset has the following structure, containing actor images collected using the Bing Image API (getData.py).
-
-    As I'm using Spiderman 2, I've collected several pictures of the actors in the movie.
+    
+    
+    ![screenshot from 2019-01-11 19-19-13](https://user-images.githubusercontent.com/31413064/51037313-dc50a200-15d5-11e9-94d1-45e94290ee52.png)
+    
+    
+    As I'm using Spiderman 2, I've collected several pictures of the actors in the movie. Per actor I have ~15 images. More will do better, but this number seems to work fine.
 
 - ### Training
   For every image in thhe dataset, we first get a square enclosing the the face in the image, then generate a 128d vector for that face, which is dumped to the 'encodings.pickle' file.
