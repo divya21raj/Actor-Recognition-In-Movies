@@ -1,0 +1,11 @@
+#VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+#Videos
+*.mp4
+*.avi
+*.gif
