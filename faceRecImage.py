@@ -17,7 +17,8 @@ args = vars(ap.parse_args())
 print("[INFO] loading encodings...")
 data = pickle.loads(open(args["encodings"], "rb").read())
  
-# load the input image and convert it from BGR to RGB
+# load and convert the image from BGR color (which OpenCV uses) 
+# to RGB color (which face_recognition uses)
 image = cv2.imread(args["image"])
 rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
  

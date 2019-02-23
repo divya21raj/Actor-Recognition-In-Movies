@@ -12,6 +12,8 @@ Can use either CNN or HOG for face detection and then compare the face with our 
 
 Here I've used **Spiderman 2** (2004), as an example. It can work with any piece of media, given the right dataset.
 
+Tons of help from ageitgey's [face_recognition](https://github.com/ageitgey/face_recognition) library.
+
 Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-with-opencv-python-and-deep-learning/) wonderful article.
 
 ## Process
