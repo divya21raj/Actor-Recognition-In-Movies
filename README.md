@@ -64,6 +64,7 @@ Read the first few lines of the Python file involved to understand the parameter
   python3 getData.py --query "tobey macguire" --output dataset/tobey_macquire
   ```
   Will fetch images from Bing Image Search and save in the mentioned directory (Max 50).
+  Make sure to get your own Bing search API key from [here](https://azure.microsoft.com/en-us/try/cognitive-services/?api=bing-image-search-api) and fill it up in the code.
 
 #### Feel free to fork the repository and use it on your own movies, maybe expand the dataset and make it a general software for any given movie :)
 
