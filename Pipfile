@@ -7,11 +7,11 @@ verify_ssl = true
 pylint = "*"
 
 [packages]
-dlib = "*"
 cmake = "*"
 imutils = "*"
 face-recognition = "*"
 opencv-python = "*"
+dlib = "*"
 
 [requires]
 python_version = "3.7"
