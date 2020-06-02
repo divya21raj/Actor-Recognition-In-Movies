@@ -12,6 +12,7 @@ imutils = "*"
 face-recognition = "*"
 opencv-python = "*"
 dlib = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.7"
