@@ -10,3 +10,7 @@
 *.avi
 *.gif
 .vscode/settings.json
+
+#data
+dataset/imdb
+dataset/wiki

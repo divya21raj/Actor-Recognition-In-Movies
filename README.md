@@ -41,27 +41,27 @@ Read the first few lines of the Python file involved to understand the parameter
 
 - ### Making encodings
     ```
-    python3 faceEncode.py --dataset dataset --encodings encodings.pickle -d hog
+    python faceEncode.py --dataset dataset/actors --encodings encodings.pickle -d hog
     ```
 
 - ### Face Recognition in Image
   ```
-  python3 faceRecImage.py -e encodings.pickle -i examples/ex6.png -d hog
+  python faceRecImage.py -e encodings.pickle -i examples/ex6.png -d hog
   ```
 
 - ### Face Recognition in Video File
   ```
-  python3 faceRecVideoFile.py -e encodings.pickle -o output_vids/ex2.mp4 -y 0 -d hog --input input_vids/ex2.mp4
+  python faceRecVideoFile.py -e encodings.pickle -o output_vids/ex2.mp4 -y 0 -d hog --input input_vids/ex2.mp4
   ```
   Outputs a video with the faces marked.
 
 - ### Face Recognition in Video Stream from Webcam
   ```
-  python3 faceRecVideo.py -e encodings.pickle -o output_vids/ex1.avi -y 0 -d hog
+  python faceRecVideo.py -e encodings.pickle -o output_vids/ex1.avi -y 0 -d hog
   ```
 - ### Getting Image Data
   ```
-  python3 getData.py --query "tobey macguire" --output dataset/tobey_macquire
+  python getData.py --query "tobey macguire" --output dataset/tobey_macquire
   ```
   Will fetch images from Bing Image Search and save in the mentioned directory (Max 50).
   Make sure to get your own Bing search API key from [here](https://azure.microsoft.com/en-us/try/cognitive-services/?api=bing-image-search-api) and fill it up in the code.
