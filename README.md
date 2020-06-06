@@ -33,7 +33,7 @@ Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-wit
 
 - ### Face Recognition
   Consider an image, be it a still from the movie, or a frame of a video clip.
-  First, we identify the faces in the image using the same method as above (CNN or HOG), generate an encoding for it(128d vector), and then compare it to our collected encodings. The actors with the most matched encodings is the actor in the image.
+  First, we identify the faces in the image using the same method as above (CNN or HOG), generate an encoding for it(128d vector), and then compare it with our collected encodings. The actors with the most matched encodings is the actor in the image.
 
 ## Usage
 
