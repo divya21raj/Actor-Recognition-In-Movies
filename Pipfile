@@ -7,14 +7,13 @@ verify_ssl = true
 pylint = "*"
 
 [packages]
-cmake = "*"
 imutils = "*"
-face-recognition = "*"
-opencv-python = "*"
 jupyter = "*"
 scipy = "*"
 pandas = "*"
-dlib = {file = "https://files.pythonhosted.org/packages/0e/ce/f8a3cff33ac03a8219768f0694c5d703c8e037e6aba2e865f9bae22ed63c/dlib-19.8.1-cp36-cp36m-win_amd64.whl"}
+opencv-python = "*"
+dlib = "*"
+face-recognition = "*"
 
 [requires]
 python_version = "3.7"

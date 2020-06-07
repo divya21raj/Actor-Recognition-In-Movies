@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "02e793a581ca040fdd1b236203bacc2a288049d9826e83579bd9c92f3d95c0c1"
+            "sha256": "18c16c2300558f89ecd1175487dc669f51fdde7298291345fb4848981664cedf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,23 +44,6 @@
             ],
             "version": "==7.1.2"
         },
-        "cmake": {
-            "hashes": [
-                "sha256:0f375ea2bca581b6b2bb5c7bfded6b1b26ab3f3e497f8107a997d4ee054ff0a5",
-                "sha256:11a9d091bde8f7ade551d6868955e1525951433e39828ad105bc2dd6a7d8f42c",
-                "sha256:18e9066bdf183835f5a8b9a313fb978883dce69884359e79a499a06adeb45ea7",
-                "sha256:1d5a24f036e80c3c1d582552ca5f2701473721b52dbed925c1b6a09351d0afbc",
-                "sha256:6ac6bd55c1f9acd2e50618c23c3f555430b3bb222786897a17f71d4ef0215fe7",
-                "sha256:7f3b92402a7f9b30c0fd13683edacd525c1ee38d7c7ac118de6292a3255859d8",
-                "sha256:9c011ca190833d94485ccbbfbd39a53d0c796377a9ce3bf87f8aff33b5b5ee7c",
-                "sha256:9e3dee5a774d0df5bacb9f15e99d8fffe0010bd980fa9f5761de869ae1116da5",
-                "sha256:b46dbf4f11e2aa9933e90fa655f2e5f13c0a6b348af9aa586de67c14dd7fc731",
-                "sha256:cf1904c2c3ea1460fe51b9ea244da110450625d49535b1a0ddf19da21f1138a0",
-                "sha256:eed290f87c084e22427ddc7188bc06dba62d18f46f5bfbf6fe539799f8148260"
-            ],
-            "index": "pypi",
-            "version": "==3.17.3"
-        },
         "colorama": {
             "hashes": [
                 "sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff",
@@ -84,13 +67,11 @@
             "version": "==0.6.0"
         },
         "dlib": {
-            "file": "https://files.pythonhosted.org/packages/0e/ce/f8a3cff33ac03a8219768f0694c5d703c8e037e6aba2e865f9bae22ed63c/dlib-19.8.1-cp36-cp36m-win_amd64.whl",
             "hashes": [
-                "sha256:794994fa2c54e7776659fddb148363a5556468a6d5d46be8dad311722d54bfcf",
-                "sha256:a0dd66c4027bdcd5b1b385d51ae04d549f937c8939b546a4b937642e658715a1"
+                "sha256:a3f5070df590c3f510dde2f4c84b1b20e3ef64a02932ed657da490834ecac7e4"
             ],
             "index": "pypi",
-            "version": "==19.8.1"
+            "version": "==19.20.0"
         },
         "entrypoints": {
             "hashes": [
