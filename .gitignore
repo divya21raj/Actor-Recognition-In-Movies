@@ -12,5 +12,7 @@
 .vscode/settings.json
 
 #data
-dataset/imdb
-dataset/wiki
+dataset/private
+
+#encodings
+encodings/private
