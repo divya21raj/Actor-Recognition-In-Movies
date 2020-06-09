@@ -27,7 +27,7 @@ Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-wit
     As I'm using Spiderman 2, I've collected several pictures of the actors in the movie. Per actor I have ~15 images. More will do better, but this number seems to work fine.
 
 - ### Training
-  For every image in the dataset, we first get a square enclosing the the face in the image, then generate a 128d vector for that face, which is dumped to the 'encodings.pickle' file.
+  For every image in the dataset, we first get a square enclosing the face in the image, then generate a 128d vector for that face, which is dumped to the 'encodings.pickle' file.
   
   We can either use CNN(slower, more accurate) or HOG(faster, less accurate) for the face detection process. Here I've used the face_recognition library, which gives me both the options.
 
