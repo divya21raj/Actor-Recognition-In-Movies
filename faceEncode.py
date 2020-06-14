@@ -69,7 +69,7 @@ def process_images():
         for (encodings,names) in encodings_names_list:
             knownEncodings.extend(encodings)
             knownNames.extend(names)
-        print("finished encoding {%d}/{%d} images"%(i+mp_batch_size,len(imagePaths)))
+        print("finished encoding {%d}/{%d} images"%(min(len(imagePaths),i+mp_batch_size),len(imagePaths)))
 
     # dump the facial encodings + names to disk
     print("[INFO] serializing encodings...")
