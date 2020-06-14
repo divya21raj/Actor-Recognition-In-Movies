@@ -4,6 +4,10 @@ import argparse
 import pickle
 import cv2
 import os
+from sklearn.neighbors import KDTree
+import numpy as np
+
+LEAF_SIZE_KDTREE = 10
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -13,6 +17,7 @@ ap.add_argument("-e", "--encodings", required=True,
     help="path to serialized db of facial encodings")
 ap.add_argument("-d", "--detection-method", type=str, default="cnn",
     help="face detection model to use: either `hog` or `cnn`")
+ap.add_argument("-fnn","--fast-nn",action="store_true")
 args = vars(ap.parse_args())
 
 # grab the paths to the input images in our dataset
@@ -52,6 +57,8 @@ for (i, imagePath) in enumerate(imagePaths):
     
 # dump the facial encodings + names to disk
 print("[INFO] serializing encodings...")
+if "fast_nn" in args:
+    knownEncodings = KDTree(np.asarray(knownEncodings),leaf_size=LEAF_SIZE_KDTREE)
 data = {"encodings": knownEncodings, "names": knownNames}
 f = open(args["encodings"], "wb")
 f.write(pickle.dumps(data))

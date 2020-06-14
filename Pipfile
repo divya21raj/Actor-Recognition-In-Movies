@@ -14,6 +14,7 @@ pandas = "*"
 opencv-python = "*"
 dlib = "*"
 face-recognition = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.7"
