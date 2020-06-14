@@ -29,8 +29,7 @@ def fast_face_match_knn(data, query_encodings, tolerance, k):
     results = kdtree.query(query_encodings, k)
     return find_best_match_within_tolerance(results, data[constants.NAMES], tolerance)
 
-# find the distance within tolerance for all available encodings 
-# return the 
+
 def linear_search(data,query_encodings):
     names = []
     # loop over the facial embeddings
