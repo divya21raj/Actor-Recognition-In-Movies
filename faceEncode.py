@@ -6,8 +6,8 @@ import cv2
 import os
 from sklearn.neighbors import KDTree
 import numpy as np
+import constants
 
-LEAF_SIZE_KDTREE = 10
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -57,9 +57,15 @@ for (i, imagePath) in enumerate(imagePaths):
     
 # dump the facial encodings + names to disk
 print("[INFO] serializing encodings...")
-if "fast_nn" in args:
-    knownEncodings = KDTree(np.asarray(knownEncodings),leaf_size=LEAF_SIZE_KDTREE)
-data = {"encodings": knownEncodings, "names": knownNames}
+# select encoding as kdtree or list based on user args
+encoding_structure = constants.ENC_LIST
+if args["fast_nn"]:
+    encoding_structure = constants.ENC_KDTREE     
+    knownEncodings = KDTree(np.asarray(knownEncodings),leaf_size=constants.LEAF_SIZE_KDTREE)
+data = { constants.ENCODINGS: knownEncodings,
+         constants.NAMES: knownNames, 
+         constants.ENCODING_STRUCTURE : encoding_structure
+        }
 f = open(args["encodings"], "wb")
 f.write(pickle.dumps(data))
 f.close()
