@@ -11,7 +11,7 @@ import multiprocessing as mp
 import functools
 
 
-def encode_images(imagePath,detection_method):
+def encode_faces(imagePath,detection_method):
     knownEncodings = []
     knownNames = []
     try :
@@ -63,12 +63,12 @@ def process_images():
     knownEncodings = []
     knownNames = []
     mp_batch_size = args["cores"]*10
-    encode_images_with_detection_method = functools.partial(encode_images,
+    encode_images_with_detection_method = functools.partial(encode_faces,
                                               detection_method=args["detection_method"])
     # loop over the image paths using batching for multiprocessing
     for i in range(0,len(imagePaths),mp_batch_size):
         image_batch = imagePaths[i:i+mp_batch_size]
-        # using pool for parallelism for 
+        # using pool for parallelism
         with mp.Pool(args["cores"]*2) as pool:
             encodings_names_list = pool.map(encode_images_with_detection_method,image_batch)
         encodings_names_list = filter(lambda t : len(t[0]) > 0 and len(t[1]) > 0, encodings_names_list)
