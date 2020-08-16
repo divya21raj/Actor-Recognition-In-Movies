@@ -5,11 +5,12 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+*/__pycache__
+
 #Videos
 *.mp4
 *.avi
 *.gif
-.vscode/settings.json
 
 #data
 dataset/private
