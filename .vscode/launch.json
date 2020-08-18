@@ -1,59 +1,59 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "VideoRecLinear",
-            "type": "python",
-            "request": "launch",
-            "program": "faceRecVideoFile.py",
-            "console": "integratedTerminal",
-            "args": [
-                "-eencodings/private/encodings_original_linear_with_cores.pickle",
-                "-iexamples/vid3.mp4",
-                "-ooutputs/vid3_o.mp4",
-                "-dhog"
-            ]
-        },
-        {
-            "name": "VideoRecKD",
-            "type": "python",
-            "request": "launch",
-            "program": "faceRecVideoFile.py",
-            "console": "integratedTerminal",
-            "args": [
-                "-eencodings/private/encodings_original_kdtree_with_cores.pickle",
-                "-iexamples/vid1.mp4",
-                "-ooutputs/vid1_o.mp4",
-                "-dhog",
-                "-y0"
-            ]
-        },
-        {
-            "name": "ImageRecLinear",
-            "type": "python",
-            "request": "launch",
-            "program": "faceRecImage.py",
-            "console": "integratedTerminal",
-            "args": [
-                "-eencodings/private/encodings_original_linear_with_cores.pickle", 
-                "-iexamples/ex3.png",
-                "-dhog"
-            ]
-        },
-        {
-            "name": "ImageRecKD",
-            "type": "python",
-            "request": "launch",
-            "program": "faceRecImage.py",
-            "console": "integratedTerminal",
-            "args": [
-                "-eencodings/private/encodings_original_kdtree_with_cores.pickle", 
-                "-iexamples/ex3.png",
-                "-dhog"
-            ]
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "VideoRecLinear",
+      "type": "python",
+      "request": "launch",
+      "program": "faceRecVideoFile.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-eencodings/private/encodings_original_linear_with_cores.pickle",
+        "-iexamples/vid3.mp4",
+        "-ooutputs/vid3_o.mp4",
+        "-dhog"
+      ]
+    },
+    {
+      "name": "VideoRecKD",
+      "type": "python",
+      "request": "launch",
+      "program": "faceRecVideoFile.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-eencodings/private/encodings_original_kdtree_with_cores.pickle",
+        "-iexamples/vid1.mp4",
+        "-ooutputs/vid1_o.mp4",
+        "-dhog",
+        "-y0"
+      ]
+    },
+    {
+      "name": "ImageRecLinear",
+      "type": "python",
+      "request": "launch",
+      "program": "faceRecImage.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-eencodings/private/encodings_original_linear_with_cores.pickle",
+        "-iexamples/ex3.png",
+        "-dhog"
+      ]
+    },
+    {
+      "name": "ImageRecKD",
+      "type": "python",
+      "request": "launch",
+      "program": "faceRecImage.py",
+      "console": "integratedTerminal",
+      "args": [
+        "-eencodings/private/encodings_original_kdtree_with_cores.pickle",
+        "-iexamples/ex3.png",
+        "-dhog"
+      ]
+    }
+  ]
 }
