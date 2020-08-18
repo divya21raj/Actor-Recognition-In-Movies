@@ -1,10 +1,9 @@
+import face_recognition
 import argparse
 import pickle
-
 import cv2
-import face_recognition
-import numpy as np
 from sklearn.neighbors import KDTree
+import numpy as np
 
 import constants
 
