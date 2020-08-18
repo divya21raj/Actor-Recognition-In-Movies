@@ -16,6 +16,7 @@ dlib = "*"
 face-recognition = "*"
 sklearn = "*"
 numpy = "*"
+progressbar = "*"
 
 [requires]
 python_version = "3.7"

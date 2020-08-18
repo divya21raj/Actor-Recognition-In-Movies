@@ -4,38 +4,15 @@ import pickle
 import cv2
 from sklearn.neighbors import KDTree
 import numpy as np
+
 import constants
-
-# find the best match for the given set of query encodings with given tolerance for distance value
-# returns then names of matched actors or constants.ID_UNKNOWN in case of no valid match with tolerance
-def find_best_match_within_tolerance(candidates, names, tolerance): 
-    zipped_dist_names = np.dstack(candidates)
-    best_candidates = []
-    for candidates in zipped_dist_names: 
-        count = {}
-        best_candidate = constants.ID_UNKNOWN
-        filtered_candidates = [int(ind) for dist, ind in candidates if dist <= tolerance]
-        if len(filtered_candidates) != 0:
-            for ind in filtered_candidates:
-                count[names[ind]] = count.get(names[ind], 0) + 1
-            best_candidate = max(count, key = count.get)
-        best_candidates.append(best_candidate)
-    return best_candidates
-
-# find the k nearest neighbors using precomputed kdtree of training encodings
-# return the names of most face for query or constants.ID_UNKNOWN in case of no valid match
-def fast_face_match_knn(data, query_encodings, tolerance, k):
-    kdtree = data[constants.ENCODINGS]
-    results = kdtree.query(query_encodings, k)
-    return find_best_match_within_tolerance(results, data[constants.NAMES], tolerance)
-
 
 def linear_search(data,query_encodings):
     names = []
     # loop over the facial embeddings
     for encoding in query_encodings:
-    # attempt to match each face in the input image to our known
-    # encodings
+        # attempt to match each face in the input image to our known
+        # encodings
         matches = face_recognition.compare_faces(data[constants.ENCODINGS],
             encoding)
         name = constants.ID_UNKNOWN
@@ -62,6 +39,33 @@ def linear_search(data,query_encodings):
         # update the list of names
         names.append(name)
     return names
+
+# find the best match for the given set of query encodings with given tolerance for distance value
+# returns then names of matched actors or constants.ID_UNKNOWN in case of no valid match with tolerance
+def find_best_match_within_tolerance(candidates, names, tolerance): 
+    zipped_dist_names = np.dstack(candidates)
+    best_candidates = []
+    
+    for candidates in zipped_dist_names: 
+        count = {}
+        best_candidate = constants.ID_UNKNOWN
+        filtered_candidates = [int(ind) for dist, ind in candidates if dist <= tolerance]
+        
+        if len(filtered_candidates) != 0:
+            for ind in filtered_candidates:
+                count[names[ind]] = count.get(names[ind], 0) + 1
+            best_candidate = max(count, key = count.get)
+        
+        best_candidates.append(best_candidate)
+    return best_candidates
+
+# find the k nearest neighbors using precomputed kdtree of training encodings
+# return the names of most face for query or constants.ID_UNKNOWN in case of no valid match
+def fast_face_match_knn(data, query_encodings, tolerance, k):
+    kdtree = data[constants.ENCODINGS]
+    results = kdtree.query(query_encodings, k)
+    return find_best_match_within_tolerance(results, data[constants.NAMES], tolerance)
+
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -100,6 +104,7 @@ if args["fast_nn"] or data[constants.ENCODING_STRUCTURE] == constants.ENC_KDTREE
         data[constants.ENCODINGS] = KDTree(np.asarray(data[constants.ENCODINGS]),
                                            leaf_size=constants.LEAF_SIZE_KDTREE)
         data[constants.ENCODING_STRUCTURE] = constants.ENC_KDTREE
+    
     names = fast_face_match_knn(data, encodings, constants.NORM_DIST_TOLERANCE, constants.K_NN)
 else:
     names = linear_search(data,encodings)

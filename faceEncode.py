@@ -44,6 +44,7 @@ def encode_faces(imagePath,detection_method):
 
 
 def process_images():
+    
     # construct the argument parser and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--dataset", required=True,
@@ -63,8 +64,10 @@ def process_images():
     knownEncodings = []
     knownNames = []
     mp_batch_size = args["cores"]*10
+    
     encode_images_with_detection_method = functools.partial(encode_faces,
                                               detection_method=args["detection_method"])
+    
     # loop over the image paths using batching for multiprocessing
     for i in range(0,len(imagePaths),mp_batch_size):
         image_batch = imagePaths[i:i+mp_batch_size]
@@ -81,13 +84,16 @@ def process_images():
     print("[INFO] serializing encodings...")
     # select encoding as kdtree or list based on user args
     encoding_structure = constants.ENC_LIST
+    
     if args["fast_nn"]:
         encoding_structure = constants.ENC_KDTREE     
         knownEncodings = KDTree(np.asarray(knownEncodings),leaf_size=constants.LEAF_SIZE_KDTREE)
+    
     data = { constants.ENCODINGS: knownEncodings,
             constants.NAMES: knownNames, 
             constants.ENCODING_STRUCTURE : encoding_structure
             }
+    
     f = open(args["encodings"], "wb")
     f.write(pickle.dumps(data))
     f.close()

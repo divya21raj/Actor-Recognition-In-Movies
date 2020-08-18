@@ -51,7 +51,7 @@ Read the first few lines of the Python file involved to understand the parameter
 
 - ### Face Recognition in Video File
   ```
-  python faceRecVideoFile.py -e encodings.pickle -o output_vids/ex2.mp4 -y 0 -d hog --input input_vids/ex2.mp4
+  python faceRecVideoFile.py -e encodings.pickle -i input_vids/ex2.mp4 -o output_vids/ex2.mp4 -y 0 -d hog 
   ```
   Outputs a video with the faces marked.
 
