@@ -6,8 +6,8 @@ ENC_LIST = "list"
 ENC_KDTREE = "kdtree"
 
 # model data keys 
-ENCODINGS = "encodings"
-NAMES = "names"
+KNOWN_ENCODINGS = "known_encodings"
+KNOWN_NAMES = "known_names"
 ENCODING_STRUCTURE = "encoding_structure"
 
 # tolerance limit for euclidean distance

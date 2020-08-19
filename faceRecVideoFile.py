@@ -2,75 +2,11 @@ import argparse
 import pickle
 
 import cv2
-import face_recognition
 import imutils
-import numpy as np
 import progressbar
 
 import constants
-
-
-def linear_search(data, query_encodings):
-    names = []
-    # loop over the facial embeddings
-    for encoding in query_encodings:
-        # attempt to match each face in the input image to our known
-        # encodings
-        matches = face_recognition.compare_faces(data[constants.ENCODINGS],
-                                                 encoding)
-        name = constants.ID_UNKNOWN
-
-        # check to see if we have found a match
-        if True in matches:
-            # find the indexes of all matched faces then initialize a
-            # dictionary to count the total number of times each face
-            # was matched
-            matchedIdxs = [i for (i, b) in enumerate(matches) if b]
-            counts = {}
-
-            # loop over the matched indexes and maintain a count for
-            # each recognized face
-            for i in matchedIdxs:
-                name = data[constants.NAMES][i]
-                counts[name] = counts.get(name, 0) + 1
-
-            # determine the recognized face with the largest number of
-            # votes (note: in the event of an unlikely tie Python will
-            # select first entry in the dictionary)
-            name = max(counts, key=counts.get)
-
-        # update the list of names
-        names.append(name)
-    return names
-
-
-# find the best match for the given set of query encodings with given tolerance for distance value
-# returns then names of matched actors or constants.ID_UNKNOWN in case of no valid match with tolerance
-def find_best_match_within_tolerance(candidates, names, tolerance):
-    zipped_dist_names = np.dstack(candidates)
-    best_candidates = []
-
-    for candidates in zipped_dist_names:
-        count = {}
-        best_candidate = constants.ID_UNKNOWN
-        filtered_candidates = [int(ind) for dist, ind in candidates if dist <= tolerance]
-
-        if len(filtered_candidates) != 0:
-            for ind in filtered_candidates:
-                count[names[ind]] = count.get(names[ind], 0) + 1
-            best_candidate = max(count, key=count.get)
-
-        best_candidates.append(best_candidate)
-    return best_candidates
-
-
-# find the k nearest neighbors using precomputed kdtree of training encodings
-# return the names of most face for query or constants.ID_UNKNOWN in case of no valid match
-def fast_face_match_knn(data, query_encodings, tolerance, k):
-    kdtree = data[constants.ENCODINGS]
-    results = kdtree.query(query_encodings, k)
-    return find_best_match_within_tolerance(results, data[constants.NAMES], tolerance)
-
+from faceRec import FaceRec
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -99,17 +35,19 @@ vs = cv2.VideoCapture(args["input"])
 writer = None
 
 # set up progress bar
-bar = progressbar.ProgressBar(maxval=int(vs.get(cv2.CAP_PROP_FRAME_COUNT)), \
+bar = progressbar.ProgressBar(maxval=int(vs.get(cv2.CAP_PROP_FRAME_COUNT)),
                               widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 i = 0
 bar.start()
+
+faceRec = FaceRec()
 
 # loop over frames from the video file stream
 while True:
 
     # update progress bar
     bar.update(i)
-    i = i + 1
+    i += 1
 
     # grab the frame from the threaded video stream
     (grabbed, frame) = vs.read()
@@ -121,30 +59,13 @@ while True:
     # convert the input frame from BGR to RGB then resize it to have
     # a width of 750px (to speedup processing)
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    rgb = imutils.resize(frame, width=750)
-    r = frame.shape[1] / float(rgb.shape[1])
+    image_rgb_resized = imutils.resize(frame, width=750)
+    r = frame.shape[1] / float(image_rgb_resized.shape[1])
 
-    # detect the (x, y)-coordinates of the bounding boxes
-    # corresponding to each face in the input frame, then compute
-    # the facial embeddings for each face
-    boxes = face_recognition.face_locations(rgb,
-                                            model=args["detection_method"])
-    encodings = face_recognition.face_encodings(rgb, boxes)
-
-    # based on user args select fast kdtree based nn or linear seach
-    names = []
-    if encodings:
-        if args["fast_nn"] or data[constants.ENCODING_STRUCTURE] == constants.ENC_KDTREE:
-            # check if kdtree is to be recomputed or not
-            if data[constants.ENCODING_STRUCTURE] != constants.ENC_KDTREE:
-                data[constants.ENCODINGS] = KDTree(np.asarray(data[constants.ENCODINGS]),
-                                                   leaf_size=constants.LEAF_SIZE_KDTREE)
-                data[constants.ENCODING_STRUCTURE] = constants.ENC_KDTREE
-
-            names = fast_face_match_knn(data, encodings, constants.NORM_DIST_TOLERANCE, constants.K_NN)
-        else:
-            names = linear_search(data, encodings)
-        # print("names : ",names)
+    # based on user args select fast kdtree based nn or linear search
+    names, boxes = faceRec.getAllFacesInImage(image_rgb_resized, args["detection_method"], args["fast_nn"],
+                                              data[constants.KNOWN_ENCODINGS], data[constants.ENCODING_STRUCTURE],
+                                              data[constants.KNOWN_NAMES])
 
     # loop over the recognized faces
     for ((top, right, bottom, left), name) in zip(boxes, names):
