@@ -57,7 +57,7 @@ Read the first few lines of the Python file involved to understand the parameter
 
 - ### Making encodings
     ```
-    python faceEncode.py --dataset dataset/actors --encodings encodings.pickle -d hog
+    python faceEncode.py --dataset dataset/actors --encodings encodings/encodings.pickle -d hog
     ```
 
 - ### Face Recognition in Image
@@ -67,13 +67,13 @@ Read the first few lines of the Python file involved to understand the parameter
 
 - ### Face Recognition in Video File
   ```
-  python faceRecVideoFile.py -e encodings.pickle -i input_vids/ex2.mp4 -o output_vids/ex2.mp4 -y 0 -d hog 
+  python faceRecVideoFile.py -e encodings/encodings.pickle -i input_vids/ex2.mp4 -o output_vids/ex2.mp4 -y 0 -d hog 
   ```
   Outputs a video with the faces marked.
 
 - ### Face Recognition in Video Stream from Webcam
   ```
-  python faceRecVideo.py -e encodings.pickle -o output_vids/ex1.avi -y 0 -d hog
+  python faceRecVideo.py -e encodings/encodings.pickle -o output_vids/ex1.avi -y 0 -d hog
   ```
 - ### Getting Image Data
   ```

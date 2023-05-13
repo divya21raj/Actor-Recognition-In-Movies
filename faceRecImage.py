@@ -15,6 +15,7 @@ ap.add_argument("-i", "--image", required=True,
 ap.add_argument("-d", "--detection-method", type=str, default="cnn",
                 help="face detection model to use: either `hog` or `cnn`")
 ap.add_argument("-fnn", "--fast-nn", action="store_true")
+ap.add_argument("-o", required=False, help="Where to store the output image and not show it. For example: -o out/")
 args = vars(ap.parse_args())
 print(args)
 
@@ -44,6 +45,10 @@ for ((top, right, bottom, left), name) in zip(boxes, names):
     cv2.putText(image, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
                 0.75, (0, 255, 0), 2)
 
-# show the output image
-cv2.imshow("Image", image)
-cv2.waitKey(0)
+# save or show the output image
+if args["o"] is not None:
+    print(f"Saving image to {args['o']}/{args['image'].split('/')[-1]}")
+    cv2.imwrite(f"{args['o']}/{args['image'].split('/')[-1]}", image)
+else:
+    cv2.imshow("Image", image)
+    cv2.waitKey(0)
