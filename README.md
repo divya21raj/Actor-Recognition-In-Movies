@@ -29,8 +29,9 @@ Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-wit
     For Windows, run `pip install pipenv`
     For macOS, run `brew install pipenv`
 
-    Then, run `pipenv install` to install all the dependencies.
-
+    Then, run `pipenv shell` to activate the virtual environment.
+    Finally, run `pipenv install` to install all the dependencies.
+    
     Note: the `face-recohnition` library does not officially support Windows, but it still might work, as it says in its [README](https://github.com/ageitgey/face_recognition)
 - ### Dataset 
     The dataset has the following structure, containing actor images collected using the Bing Image API (getData.py).
