@@ -19,3 +19,6 @@ dataset/private
 
 #encodings
 encodings/private
+
+#.lock
+*.lock
