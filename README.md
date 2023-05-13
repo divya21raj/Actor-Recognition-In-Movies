@@ -17,6 +17,21 @@ Tons of help from ageitgey's [face_recognition](https://github.com/ageitgey/face
 Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-with-opencv-python-and-deep-learning/) wonderful article.
 
 ## Process
+
+- ### Setup
+    Install `cmake`, as it is required for the dlib library.
+    For linux, run `sudo apt-get install cmake`
+    For Windows, download the installer from [here](https://cmake.org/download/)
+    For macOS, run `brew install cmake`
+
+    Also, install `pipenv` for managing the virtual environment.
+    For linux, run `sudo pip install pipenv`
+    For Windows, run `pip install pipenv`
+    For macOS, run `brew install pipenv`
+
+    Then, run `pipenv install` to install all the dependencies.
+
+    Note: the `face-recohnition` library does not officially support Windows, but it still might work, as it says in its [README](https://github.com/ageitgey/face_recognition)
 - ### Dataset 
     The dataset has the following structure, containing actor images collected using the Bing Image API (getData.py).
     
