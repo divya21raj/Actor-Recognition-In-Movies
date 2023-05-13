@@ -71,10 +71,6 @@ Read the first few lines of the Python file involved to understand the parameter
   ```
   Outputs a video with the faces marked.
 
-- ### Face Recognition in Video Stream from Webcam
-  ```
-  python faceRecVideo.py -e encodings/encodings.pickle -o output_vids/ex1.avi -y 0 -d hog
-  ```
 - ### Getting Image Data
   ```
   python getData.py --query "tobey maguire" --output dataset/tobey_maguire
