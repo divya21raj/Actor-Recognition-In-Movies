@@ -4,6 +4,7 @@ import argparse
 import pickle
 import cv2
 import os
+from sklearn.decomposition import PCA
 from sklearn.neighbors import KDTree
 import numpy as np
 import constants
@@ -36,6 +37,7 @@ def _encode_faces(imagePath, detection_method):
             # encodings
             known_encodings.append(encoding)
             known_names.append(name)
+            
         return known_encodings, known_names
     except Exception as ex:
         print("exception while encoding image %s : %s" % (imagePath, ex))
@@ -54,6 +56,7 @@ def _process_images():
     ap.add_argument("-fnn", "--fast-nn", action="store_true")
     ap.add_argument("-c", "--cores", required=False, type=int, default=1,
                     help="no of cores to run on, will decide the parallelism")
+    ap.add_argument("-pca", required=False, action="store_true", help="whether to use pca or not on encodings")
     args = vars(ap.parse_args())
 
     # grab the paths to the input images in our dataset
@@ -62,6 +65,7 @@ def _process_images():
     known_encodings = []
     known_names = []
     mp_batch_size = args["cores"] * 10
+    pca = PCA(n_components=constants.PCA_COMPONENTS)
 
     encode_images_with_detection_method = functools.partial(_encode_faces,
                                                             detection_method=args["detection_method"])
@@ -76,7 +80,16 @@ def _process_images():
         for (encodings, names) in encodings_names_list:
             known_encodings.extend(encodings)
             known_names.extend(names)
+            
         print("finished encoding {%d}/{%d} images" % (min(len(image_paths), i + mp_batch_size), len(image_paths)))
+
+    # apply PCA to reduce the dimensionality of the encodings
+    if args["pca"]:
+        known_encodings = np.asarray(known_encodings)
+        print("[INFO] applying PCA to reduce dimensionality of encodings")
+        print("Shape of encodings before PCA: ", known_encodings.shape)
+        known_encodings = pca.fit_transform(known_encodings)
+        print("Shape of encodings after PCA: ", known_encodings.shape)
 
     # dump the facial encodings + names to disk
     print("[INFO] serializing encodings...")
@@ -84,6 +97,7 @@ def _process_images():
     encoding_structure = constants.ENC_LIST
 
     if args["fast_nn"]:
+        print("[INFO] using KDTree for known encodings, to speed up nearest neighbor search")
         encoding_structure = constants.ENC_KDTREE
         known_encodings = KDTree(np.asarray(known_encodings), leaf_size=constants.LEAF_SIZE_KDTREE)
 

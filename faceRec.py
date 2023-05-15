@@ -96,6 +96,7 @@ class FaceRec:
             if use_fastnn or known_encodings_structure == constants.ENC_KDTREE:
                 # check if kdtree is to be recomputed or not
                 if known_encodings_structure != constants.ENC_KDTREE:
+                    print("Recomputing kdtree")
                     known_encodings = KDTree(np.asarray(encodings), leaf_size=constants.LEAF_SIZE_KDTREE)
                     encoding_structure = constants.ENC_KDTREE
 

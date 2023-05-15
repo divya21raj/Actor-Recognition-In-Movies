@@ -13,6 +13,8 @@ dlib = "*"
 numpy = "*"
 progressbar = "*"
 face-recognition = "*"
+mtcnn = "*"
+tensorflow = "*"
 
 [dev-packages]
 

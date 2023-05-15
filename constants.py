@@ -18,3 +18,6 @@ K_NN = 5
 
 # id for unknown faces 
 ID_UNKNOWN = "Unknown"
+
+# number of components to keep after PCA
+PCA_COMPONENTS = 64
