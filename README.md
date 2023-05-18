@@ -1,16 +1,16 @@
 # Actor Recognition In Movie Clips and Images
+<img src="https://github.com/divya21raj/Actor-Recognition-In-Movies/assets/31413064/7407cf08-17c8-4d90-a385-b3aded2739dd" width="640" height="310">
+
+![n8](https://github.com/divya21raj/Actor-Recognition-In-Movies/assets/31413064/037b0201-58a0-4cc1-8954-07fa5d27ea18)
+
+<img src="https://github.com/divya21raj/Actor-Recognition-In-Movies/assets/31413064/b2993f49-f8c6-4033-b205-d03dabefd07b" width="640" height="360">
+
+![n7](https://github.com/divya21raj/Actor-Recognition-In-Movies/assets/31413064/7e6805c2-7e7a-40d5-89b4-d2523a38e7fd)
+
 ![ex1](https://user-images.githubusercontent.com/31413064/51027993-43f7f480-15b8-11e9-809a-f711c59aac8a.gif)
 
-
-![ex1_540](https://user-images.githubusercontent.com/31413064/51028169-c5e81d80-15b8-11e9-9c15-d12ce4905027.png)
-
-
-![ex2_540](https://user-images.githubusercontent.com/31413064/51028202-d7312a00-15b8-11e9-9c6e-948bc385967d.png)
-
-Recognizing actors in a movie clip or image, using DeepLearning and Python.
+Recognizing actors/celebs in a clip or image from any media, using DeepLearning and Python.
 Can use either CNN or HOG for face detection and then compare the face with our dataset of faces.
-
-Here I've used **Spiderman 2** (2004), as an example. It can work with any piece of media, given the right dataset.
 
 Tons of help from ageitgey's [face_recognition](https://github.com/ageitgey/face_recognition) library.
 
@@ -33,9 +33,9 @@ Inspired by [this](https://www.pyimagesearch.com/2018/06/18/face-recognition-wit
     Finally, run `pipenv install` to install all the dependencies.
     
     Note: the `face-recognition` library does not officially support Windows, but it still might work, as it says in its [README](https://github.com/ageitgey/face_recognition)
+    
 - ### Dataset 
     The dataset has the following structure, containing actor images collected using the Bing Image API (getData.py).
-    
     
     ![screenshot from 2019-01-11 19-19-13](https://user-images.githubusercontent.com/31413064/51037313-dc50a200-15d5-11e9-94d1-45e94290ee52.png)
     
